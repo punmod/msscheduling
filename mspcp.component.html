@@ -1,0 +1,57 @@
+
+<h1 align=center> Please provide your preferences on Meeting for Research Projects</h1>
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+   
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+     
+      <ng-template matStepLabel>Give preference for every time slot</ng-template>
+     <h6>Note:Smaller the number higher the preference</h6>
+      <mat-form-field>
+        <mat-select placeholder="Slot 1 (10/11/2018)" [formControl]="slot1preference">
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Slot 2 (13/11/2018)" [formControl]="slot2preference">
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Slot 3 (17/11/2018)" [formControl]="slot3preference" >
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+      
+      
+      <div>
+
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+ 
+
+  
+
+
+
+
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
